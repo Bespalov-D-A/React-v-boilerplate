@@ -14,7 +14,7 @@ const GoogleAuthBtn: React.FC<IGoogleAuthBtn> = (props) => {
       onClick={() => { credentialLink && window.location.assign(credentialLink) }}
     >
       <img src={google} alt="" className={s.ico} />
-      <span>искать с Google</span>
+      <span>Auth with Google</span>
     </button>
   )
 }
