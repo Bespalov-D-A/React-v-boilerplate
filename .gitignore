@@ -8,9 +8,6 @@
 # testing
 /coverage
 
-# production
-/build
-!config/build
 
 
 # Node.js / React
@@ -147,3 +144,7 @@ yarn-error.log*
 
 .vscode/*
 !.vscode/i18n-ally-reviews.yml
+
+# production
+/build
+!config/build
