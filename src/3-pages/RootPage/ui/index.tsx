@@ -6,8 +6,6 @@ const RootPage: FC = (props) => {
   return (
     <div>
       <GoogleAuthBtn />
-      WELCOME
-      <button >CLICK</button>
       <Outlet />
     </div>
   )

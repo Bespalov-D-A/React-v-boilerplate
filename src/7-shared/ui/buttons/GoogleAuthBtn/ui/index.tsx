@@ -9,7 +9,7 @@ const credentialLink = `${config.url.client}/api/auth/google`
 
 const GoogleAuthBtn: React.FC<IGoogleAuthBtn> = (props) => {
   return (
-    <button
+    <button style={{ margin: 12, padding: '12px 12px 12px 52px' }}
       className={s.btn}
       onClick={() => { credentialLink && window.location.assign(credentialLink) }}
     >

@@ -7,3 +7,7 @@ export const config = {
     client: `${protocol}://${host}:${port}`
   }
 }
+
+console.log('_________________________________')
+console.log('_________________________________')
+console.log(config)
