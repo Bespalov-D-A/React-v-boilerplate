@@ -17,13 +17,6 @@ export function buildPlugins({
   analyze,
   env
 }: buildOptions): webpack.WebpackPluginInstance[] {
-  const envs: string[] = Object.keys(process.env).map(e => e.startsWith('REACT_APP') ? e : '').filter(x => !!x)
-  const newEnvs: Record<string, string> = {}
-  for (let i = 0; i < envs.length; i++) {
-    const key = envs[i]
-    if (process.env[key] !== undefined) newEnvs[`${key}`] = JSON.stringify(process.env[key])
-  }
-
   const plugins = [
     // Добавляем плагины
     // https://webpack.js.org/plugins/
@@ -44,7 +37,6 @@ export function buildPlugins({
     new webpack.HotModuleReplacementPlugin(),
     new BundleAnalyzerPlugin({ analyzerMode: analyze ? 'server' : 'disabled' }),
     new Dotenv({ path: path.resolve(paths.baseSrc, '.env') }),
-    new webpack.DefinePlugin({ process: { env: newEnvs } }),
     ...(isDev ? [new ReactRefreshWebpackPlugin()] : [])
   ]
 
