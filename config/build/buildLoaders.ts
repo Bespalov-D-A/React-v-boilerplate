@@ -31,6 +31,14 @@ export function buildLoaders(options: buildOptions): webpack.RuleSetRule[] {
     exclude: /node_modules/ // Исключить из обработки
   }
 
+  const cssLoader = {
+    test: /\.css$/i,
+    use: [
+      isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+      'css-loader',
+    ],
+  };
+
   const sassLoader = {
     test: /\.s[ac]ss$/i,
     use: [
@@ -61,6 +69,7 @@ export function buildLoaders(options: buildOptions): webpack.RuleSetRule[] {
     sassLoader,
     svgLoader,
     svgLoaderUrl,
-    imgLoader
+    imgLoader,
+      cssLoader
   ]
 }
