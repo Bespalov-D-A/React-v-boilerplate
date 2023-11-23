@@ -7,6 +7,8 @@ import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 import Dotenv from 'dotenv-webpack'
 import path from 'path'
 
+
+let loadingPercentage = 0
 // файл для декомпозиции плагинов
 // вернёт нам плагины
 export function buildPlugins({
@@ -28,7 +30,12 @@ export function buildPlugins({
     new HtmlWebpackPlugin({
       template: paths.html
     }),
-    new webpack.ProgressPlugin({ percentBy: 'modules' }),
+    new webpack.ProgressPlugin({ percentBy: 'modules', dependencies: false, entries: false, modules: false,  handler(percentage, message, ...args) {
+        if(Math.round((percentage * 100) / 10) * 10 !== loadingPercentage) {
+          loadingPercentage = Math.round((percentage * 100) / 10) * 10
+          console.log(`Loading frontend: ${Math.round((percentage * 100) / 10) * 10}%`)
+        }
+      }}),
     new MiniCssExtractPlugin({
       filename: 'css/[name].[contenthash:8].css',
       chunkFilename: 'css/[name].[contenthash:8].css'
